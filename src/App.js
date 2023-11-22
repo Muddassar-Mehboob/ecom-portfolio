@@ -1,15 +1,23 @@
 import React, { createContext, useContext, useState } from 'react';
 import './App.scss';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, ProductPage, NewArrival, CategoryProduct, ProductSingle, Cart, Search, Login } from "./pages/index";
+import { Home, ProductPage, LoginPage, NewArrival, CategoryProduct, ProductSingle, Cart, Search } from "./pages/index";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./components/Footer/Footer";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import { useAuth } from './AuthenticationContext';
 
 // Create a context to manage user authentication
 const AuthContext = createContext();
+
+// ProtectedRoute component to conditionally render routes based on authentication
+const ProtectedRoute = ({ element, ...rest }) => {
+  const { checkAuthentication } = useAuth();
+
+  return checkAuthentication() ? element : <Navigate to="/login" />;
+};
 
 // A simple authentication provider
 const AuthProvider = ({ children }) => {
@@ -33,31 +41,6 @@ const AuthProvider = ({ children }) => {
   // Custom hook to access authentication context
   const useAuth = () => {
     return useContext(AuthContext);
-  };
-
-  // ProtectedRoute component to conditionally render routes based on authentication
-  const ProtectedRoute = ({ element, ...rest }) => {
-    const { checkAuthentication } = useAuth();
-
-    return checkAuthentication() ? element : <Navigate to="/login" />;
-  };
-
-  // Login page component
-  const LoginPage = () => {
-    const { login } = useAuth();
-
-    const handleLogin = () => {
-      // You would replace this with your actual login logic
-      // For now, just simulate a successful login
-      login();
-    };
-
-    return (
-      <div>
-        <h2>Login Page</h2>
-        <button onClick={handleLogin}>Login</button>
-      </div>
-    );
   };
 
   return (
