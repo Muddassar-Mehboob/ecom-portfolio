@@ -1,15 +1,14 @@
 {
   "user": [
     {
-      "id": "adminuser",
-      "name": "Nihira",
-      "password": "admin",
-      "email": "nihiratechiees@gmail.com",
-      "phone": "8989898989",
-      "country": "usa",
-      "address": "",
-      "role": "admin",
-      "gender": "female"
+    "id": "adminuser ",
+      "name": "Muddassar Mehboob",
+      "password": "123456",
+      "email": "sec1611@gmail.com",
+      "phone": "+92333333333333",
+      "country": "Pakistan",
+      "address": "Chak No. 16/11.L P.O Same Postal Code 57200 Tehsil Chichawatni District Sahiwal, Punjab, Pakistan",
+      "gender": "male"
     },
     {
       "id": "ntuser",
